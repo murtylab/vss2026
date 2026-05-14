@@ -1,0 +1,162 @@
+/* VSS nav: desktop = one row (home | segment | murty); narrow = two rows, no overlap */
+
+.vss-page-tabs {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 0;
+    margin: 0 0 14px 0;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.vss-page-tabs-external {
+    display: inline-block;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(90, 72, 82, 0.95);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 141, 154, 0.45);
+    padding-bottom: 0;
+    white-space: nowrap;
+    line-height: 1.15;
+    min-width: 0;
+}
+
+.vss-page-tabs-external:first-of-type {
+    justify-self: start;
+}
+
+.vss-page-tabs-external:last-of-type {
+    justify-self: end;
+}
+
+.vss-page-tabs-external:hover {
+    color: rgba(36, 34, 31, 0.95);
+    border-bottom-color: rgba(138, 90, 100, 0.75);
+}
+
+.vss-page-tabs-segment {
+    justify-self: center;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 2px;
+    max-width: 100%;
+    min-width: 0;
+    padding: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(107, 99, 88, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    box-sizing: border-box;
+}
+
+.vss-page-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(61, 56, 50, 0.82);
+    text-decoration: none;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.vss-page-tab:hover {
+    color: rgba(36, 34, 31, 0.95);
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+.vss-page-tab[aria-current="page"] {
+    font-weight: 600;
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(135deg, #c98d9a 0%, #b8a4bc 50%, #c4b4cc 100%);
+    box-shadow: 0 1px 6px rgba(107, 99, 88, 0.18);
+}
+
+.vss-page-tab[aria-current="page"]:hover {
+    color: #fff;
+    filter: brightness(0.96);
+}
+
+/* Narrow viewports: two rows so nothing stacks on one cramped line */
+@media (max-width: 640px) {
+    .vss-page-tabs {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "home murty"
+            "segment segment";
+        row-gap: 10px;
+        column-gap: 10px;
+        margin-bottom: 12px;
+        padding-inline: max(0px, env(safe-area-inset-left, 0px))
+            max(0px, env(safe-area-inset-right, 0px));
+    }
+
+    .vss-page-tabs-external:first-of-type {
+        grid-area: home;
+        justify-self: start;
+        align-self: center;
+        white-space: normal;
+        overflow-wrap: break-word;
+        font-size: 0.68rem;
+    }
+
+    .vss-page-tabs-external:last-of-type {
+        grid-area: murty;
+        justify-self: end;
+        align-self: center;
+        text-align: end;
+        white-space: normal;
+        overflow-wrap: break-word;
+        font-size: 0.68rem;
+    }
+
+    .vss-page-tabs-segment {
+        grid-area: segment;
+        justify-self: stretch;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .vss-page-tab {
+        font-size: 0.68rem;
+        padding: 6px 8px;
+        white-space: normal;
+        hyphens: auto;
+    }
+}
+
+@media (max-width: 400px) {
+    .vss-page-tabs {
+        row-gap: 8px;
+        column-gap: 8px;
+    }
+
+    .vss-page-tabs-external {
+        font-size: 0.62rem;
+    }
+
+    .vss-page-tab {
+        font-size: 0.62rem;
+        padding: 6px 6px;
+    }
+}
