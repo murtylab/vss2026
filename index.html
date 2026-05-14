@@ -613,12 +613,49 @@
             outline-offset: 3px;
         }
 
+        /* Nav without “← Virtual Visual Cortex”: segment left, Murty link right */
+        .vss-page-tabs.vss-page-tabs--no-vcc-link {
+            grid-template-columns: auto 1fr;
+        }
+
+        .vss-page-tabs.vss-page-tabs--no-vcc-link .vss-page-tabs-segment {
+            justify-self: start;
+        }
+
+        .vss-page-tabs.vss-page-tabs--no-vcc-link .vss-page-tabs-external {
+            justify-self: end;
+        }
+
+        @media (max-width: 640px) {
+            .vss-page-tabs.vss-page-tabs--no-vcc-link {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                grid-template-areas:
+                    "segment"
+                    "murty";
+            }
+
+            .vss-page-tabs.vss-page-tabs--no-vcc-link .vss-page-tabs-segment {
+                grid-area: segment;
+                justify-self: start;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .vss-page-tabs.vss-page-tabs--no-vcc-link .vss-page-tabs-external {
+                grid-area: murty;
+                justify-self: end;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="page-shell">
-        <nav class="vss-page-tabs" aria-label="Page">
+        <nav class="vss-page-tabs vss-page-tabs--no-vcc-link" aria-label="Page">
+            <!--
             <a href="https://murtylab.github.io/cortex-app/" class="vss-page-tabs-external" rel="noopener noreferrer">← Virtual Visual Cortex</a>
+            -->
             <div class="vss-page-tabs-segment" role="group" aria-label="VSS event pages">
                 <button type="button" class="vss-page-tab" data-view="main" aria-current="page" aria-pressed="true">Murty Lab @ VSS 2026</button>
                 <button type="button" class="vss-page-tab" data-view="satellite" aria-pressed="false">VSS 2026 Satellite</button>
